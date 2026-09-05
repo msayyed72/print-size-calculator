@@ -14,6 +14,11 @@ concurrency:
   group: pages
   cancel-in-progress: true
 
+env:
+  # Building/preview phase: GitHub Pages project-site path.
+  # Switch this to an empty value when fameorbit.app becomes the production host.
+  NEXT_PUBLIC_BASE_PATH: /print-size-calculator
+
 jobs:
   build:
     runs-on: ubuntu-latest
