@@ -2,7 +2,16 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import "./globals.css";
 
-export const metadata: Metadata = { title: "FameOrbit — Free Online Tools", description: "Fast, free online tools for images, productivity, developers, and everyday tasks.", metadataBase: new URL("https://fameorbit.app") };
+export const metadata: Metadata = {
+  title: "FameOrbit — Free Online Tools",
+  description: "Fast, free online tools for images, productivity, developers, and everyday tasks.",
+  metadataBase: new URL("https://fameorbit.app"),
+  icons: {
+    icon: "/logo-white.webp",
+    shortcut: "/logo-white.webp",
+    apple: "/logo-white.webp",
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
