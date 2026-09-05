@@ -23,7 +23,7 @@ const categories = [
   ]},
 ] as const;
 
-const liveSlugs = new Set(["print-size-calculator", "dpi-calculator", "pixels-to-inches"]);
+const liveSlugs = new Set(["print-size-calculator", "dpi-calculator", "pixels-to-inches", "image-resolution-checker"]);
 
 export default function Home() {
   return <main>
