@@ -47,10 +47,12 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  const Logo = () => <><img className={styles.logoMark} src="/logo-white.webp" alt="" aria-hidden="true" /><span><strong>Fame</strong>Orbit</span></>;
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
-        <Link className={styles.brand} href="/"><strong>Fame</strong>Orbit</Link>
+        <Link className={styles.brand} href="/"><Logo /></Link>
         <nav className={styles.nav} aria-label="Primary navigation">
           <a href="#popular">Popular</a><a href="#workflows">Workflows</a><a href="#categories">Categories</a><a href="#all-tools">All tools</a>
         </nav>
@@ -113,7 +115,7 @@ export default function Home() {
         <div className={styles.allToolGrid}>{all.map((t, i) => <Link className={styles.allTool} href={t.href} key={t.name}><span>{String(i + 1).padStart(2, "0")}</span><div><strong>{t.name}</strong><small>{t.category}</small></div><b>↗</b></Link>)}</div>
       </section>
 
-      <footer className={styles.footer}><div><Link className={styles.brand} href="/"><strong>Fame</strong>Orbit</Link><p>Small tools. Done properly.</p></div><div><Link href="/about/">About</Link><Link href="/privacy/">Privacy</Link><Link href="/terms/">Terms</Link></div></footer>
+      <footer className={styles.footer}><div><Link className={styles.brand} href="/"><Logo /></Link><p>Small tools. Done properly.</p></div><div><Link href="/about/">About</Link><Link href="/privacy/">Privacy</Link><Link href="/terms/">Terms</Link></div></footer>
     </main>
   );
 }
