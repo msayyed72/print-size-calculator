@@ -24,7 +24,7 @@ const workflows = [
   { label: "TEXT → FOCUSED", title: "Write, count and focus", description: "Handle everyday text tasks with tools that stay out of your way.", steps: ["Word Counter", "Text Case Converter", "Typing Test"] }
 ];
 const all = categories.flatMap(c => c.tools.map(name => ({ name, category: c.name, href: `/${slug(name)}/` })));
-const descriptions = new Map(categories.flatMap(c => c.tools.map(name => [name, c.description])));
+const descriptions = new Map<string, string>(categories.flatMap(c => c.tools.map(name => [name, c.description])));
 
 export default function Home() {
   const [query, setQuery] = useState("");
