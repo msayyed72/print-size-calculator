@@ -1,6 +1,63 @@
-"use client";
-
 import Link from "next/link";
 
-const categories=[{name:"Image Tools",icon:"✦",description:"Work with image dimensions, resolution and print sizes.",tools:[{name:"Print Size Calculator",slug:"print-size-calculator",description:"Find the best print size and PPI for any photo."},{name:"DPI Calculator",slug:"dpi-calculator",description:"Calculate image resolution for your target print."},{name:"Pixels to Inches",slug:"pixels-to-inches",description:"Convert pixel dimensions into physical size."},{name:"Image Resolution Checker",slug:"image-resolution-checker",description:"Check whether an image has enough resolution."}]},{name:"Productivity",icon:"◷",description:"Simple tools that help you get everyday work done.",tools:[{name:"Typing Test",slug:"typing-test",description:"Measure typing speed and accuracy."},{name:"Word Counter",slug:"word-counter",description:"Count words and estimate reading time."},{name:"Character Counter",slug:"character-counter",description:"Count characters, spaces and words."}]},{name:"Developer Tools",icon:"</>",description:"Fast utilities for developers and technical workflows.",tools:[{name:"JSON Formatter",slug:"json-formatter",description:"Format, validate and inspect JSON."},{name:"Base64 Encoder",slug:"base64-encoder",description:"Encode and decode Base64 text."},{name:"UUID Generator",slug:"uuid-generator",description:"Generate UUIDs instantly in your browser."}]},{name:"Everyday Tools",icon:"⌁",description:"Useful little utilities for daily tasks.",tools:[{name:"Online Ruler",slug:"online-ruler",description:"Measure objects on screen."},{name:"QR Code Generator",slug:"qr-code-generator",description:"Create a QR code from text or a link."}]}] as const;
-export default function Home(){return <main><header className="siteHeader"><Link className="brand" href="/"><strong>Fame</strong>Orbit</Link><span className="headerTag">FREE ONLINE TOOLS</span></header><section className="platformHero"><div className="eyebrow">WELCOME TO FAMEORBIT</div><h1>Useful tools.<br/><em>Zero friction.</em></h1><p>Fast, free online tools for images, productivity, developers and everyday tasks. No complicated setup. Just open a tool and get things done.</p></section><section className="toolsDirectory">{categories.map(category=><section className="toolCategory" key={category.name}><div className="categoryIntro"><div className="categoryIcon">{category.icon}</div><div><h2>{category.name}</h2><p>{category.description}</p></div></div><div className="toolGrid">{category.tools.map((tool,index)=>["print-size-calculator","dpi-calculator"].includes(tool.slug)?<Link className="toolCard live" href={`/${tool.slug}/`} key={tool.slug}><span className="toolNumber">{String(index+1).padStart(2,"0")}</span><div><h3>{tool.name}</h3><p>{tool.description}</p></div><span className="arrow">↗</span></Link>:<div className="toolCard coming" key={tool.slug}><span className="toolNumber">{String(index+1).padStart(2,"0")}</span><div><h3>{tool.name}</h3><p>{tool.description}</p></div><span className="soon">COMING SOON</span></div>)}</div></section>)}</section><section className="platformNote"><div className="eyebrow">BUILT FOR THE WEB</div><h2>Small tools that do one thing really well.</h2><p>FameOrbit is designed to stay fast, private and easy to use. More tools are on the way.</p></section><footer><span>FameOrbit · Free online tools</span><span>Fast · Simple · Useful</span></footer></main>}
+const categories = [
+  { name: "Image Tools", icon: "✦", description: "Work with image dimensions, resolution and print sizes.", tools: [
+    { name: "Print Size Calculator", slug: "print-size-calculator", description: "Find the best print size and PPI for any photo." },
+    { name: "DPI Calculator", slug: "dpi-calculator", description: "Calculate image resolution for your target print." },
+    { name: "Pixels to Inches", slug: "pixels-to-inches", description: "Convert pixel dimensions into physical size." },
+    { name: "Image Resolution Checker", slug: "image-resolution-checker", description: "Check whether an image has enough resolution." },
+  ]},
+  { name: "Productivity", icon: "◷", description: "Simple tools that help you get everyday work done.", tools: [
+    { name: "Typing Test", slug: "typing-test", description: "Measure typing speed and accuracy." },
+    { name: "Word Counter", slug: "word-counter", description: "Count words and estimate reading time." },
+    { name: "Character Counter", slug: "character-counter", description: "Count characters, spaces and words." },
+  ]},
+  { name: "Developer Tools", icon: "</>", description: "Fast utilities for developers and technical workflows.", tools: [
+    { name: "JSON Formatter", slug: "json-formatter", description: "Format, validate and inspect JSON." },
+    { name: "Base64 Encoder", slug: "base64-encoder", description: "Encode and decode Base64 text." },
+    { name: "UUID Generator", slug: "uuid-generator", description: "Generate UUIDs instantly in your browser." },
+  ]},
+  { name: "Everyday Tools", icon: "⌁", description: "Useful little utilities for daily tasks.", tools: [
+    { name: "Online Ruler", slug: "online-ruler", description: "Measure objects on screen." },
+    { name: "QR Code Generator", slug: "qr-code-generator", description: "Create a QR code from text or a link." },
+  ]},
+] as const;
+
+const liveSlugs = new Set(["print-size-calculator", "dpi-calculator"]);
+
+export default function Home() {
+  return <main>
+    <header className="siteHeader">
+      <Link className="brand" href="/"><strong>Fame</strong>Orbit</Link>
+      <span className="headerTag">FREE ONLINE TOOLS</span>
+    </header>
+
+    <section className="platformHero">
+      <div className="eyebrow">WELCOME TO FAMEORBIT</div>
+      <h1>Useful tools.<br /><em>Zero friction.</em></h1>
+      <p>Fast, free online tools for images, productivity, developers and everyday tasks. No complicated setup. Just open a tool and get things done.</p>
+      <div className="heroActions">
+        <Link className="primaryAction" href="/print-size-calculator/">Explore tools <span>↗</span></Link>
+        <a className="secondaryAction" href="#tools">Browse all</a>
+      </div>
+    </section>
+
+    <section className="trustStrip">
+      <span>100% FREE</span><i /> <span>NO SIGN-UP</span><i /> <span>PRIVACY FIRST</span><i /> <span>FAST IN YOUR BROWSER</span>
+    </section>
+
+    <section className="toolsDirectory" id="tools">
+      <div className="directoryHeader"><div><div className="eyebrow">THE FAMEORBIT TOOLKIT</div><h2>Everything you need,<br /><em>in one place.</em></h2></div><p>Useful little tools with no account, no clutter and no unnecessary steps.</p></div>
+      {categories.map(category => <section className="toolCategory" key={category.name}>
+        <div className="categoryIntro"><div className="categoryIcon">{category.icon}</div><div><h2>{category.name}</h2><p>{category.description}</p></div></div>
+        <div className="toolGrid">{category.tools.map((tool, index) => liveSlugs.has(tool.slug) ?
+          <Link className="toolCard live" href={`/${tool.slug}/`} key={tool.slug}><span className="toolNumber">{String(index + 1).padStart(2, "0")}</span><div><h3>{tool.name}</h3><p>{tool.description}</p></div><span className="arrow">↗</span></Link> :
+          <div className="toolCard coming" key={tool.slug}><span className="toolNumber">{String(index + 1).padStart(2, "0")}</span><div><h3>{tool.name}</h3><p>{tool.description}</p></div><span className="soon">COMING SOON</span></div>
+        )}</div>
+      </section>)}
+    </section>
+
+    <section className="platformNote"><div className="eyebrow">BUILT FOR THE WEB</div><h2>Small tools that do<br /><em>one thing really well.</em></h2><p>FameOrbit is designed to stay fast, private and easy to use. More tools are on the way.</p></section>
+    <footer><span>FameOrbit · Free online tools</span><span>Fast · Simple · Useful</span></footer>
+  </main>;
+}
