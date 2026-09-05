@@ -9,5 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: "https://fameorbit.app/dpi-calculator/" },
     { url: "https://fameorbit.app/pixels-to-inches/" },
     { url: "https://fameorbit.app/image-resolution-checker/" },
+    { url: "https://fameorbit.app/word-counter/" },
+    { url: "https://fameorbit.app/character-counter/" },
+    { url: "https://fameorbit.app/json-formatter/" },
+    { url: "https://fameorbit.app/uuid-generator/" },
   ];
 }
