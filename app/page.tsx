@@ -47,7 +47,7 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, []);
 
-  const Logo = () => <><img className={styles.logoMark} src="/logo-white.webp" alt="" aria-hidden="true" /><span><strong>Fame</strong>Orbit</span></>;
+  const Logo = () => <><img className={styles.logoMark} src="./logo-white.webp" alt="" aria-hidden="true" /><span><strong>Fame</strong>Orbit</span></>;
 
   return (
     <main className={styles.page}>
