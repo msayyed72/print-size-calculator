@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import AdSlot from "./components/AdSlot";
 
 const presets = [
   ["4 × 6 in", 4, 6], ["5 × 7 in", 5, 7], ["8 × 10 in", 8, 10], ["8 × 12 in", 8, 12],
@@ -62,7 +63,9 @@ export default function Home() {
         <button className="reset" onClick={()=>setImage(null)}>Analyze another image</button>
       </>}
     </section>
+    <AdSlot placement="after-calculator" />
     <section className="info"><div><div className="eyebrow">HOW IT WORKS</div><h2>Your pixels, translated<br/>into real-world size.</h2></div><div className="infoGrid"><article><b>01</b><h3>Upload privately</h3><p>Your image is processed entirely in your browser. It never leaves your device.</p></article><article><b>02</b><h3>We calculate</h3><p>We compare your pixel dimensions against standard print sizes and PPI targets.</p></article><article><b>03</b><h3>Print confidently</h3><p>Get a clear recommendation instead of guessing whether your photo is large enough.</p></article></div></section>
+    <AdSlot placement="before-guide" />
     <section className="contentSection">
       <div className="contentInner">
         <div className="eyebrow">PRINT SIZE GUIDE</div>
