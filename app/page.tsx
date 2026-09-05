@@ -18,6 +18,11 @@ const slug = (name: string) => ({
 
 const popular = ["Image Compressor", "Image Resizer", "Image Format Converter", "Typing Test", "JSON Formatter", "QR Code Generator", "Online Ruler", "Password Generator"];
 const icons = ["◫", "↔", "⇄", "⌨", "{ }", "▦", "▥", "⚿"];
+const workflows = [
+  { label: "IMAGE → READY", title: "Make an image ready to use", description: "Start with your file, fix the size, then export exactly what you need.", steps: ["Image Resizer", "Image Compressor", "Image Format Converter"] },
+  { label: "DATA → CLEAN", title: "Clean up developer data", description: "Format, validate and transform messy data without leaving the browser.", steps: ["JSON Formatter", "JSON Minifier", "JSON to CSV"] },
+  { label: "TEXT → FOCUSED", title: "Write, count and focus", description: "Handle everyday text tasks with tools that stay out of your way.", steps: ["Word Counter", "Text Case Converter", "Typing Test"] }
+];
 const all = categories.flatMap(c => c.tools.map(name => ({ name, category: c.name, href: `/${slug(name)}/` })));
 const descriptions = new Map(categories.flatMap(c => c.tools.map(name => [name, c.description])));
 
@@ -47,7 +52,7 @@ export default function Home() {
       <header className={styles.header}>
         <Link className={styles.brand} href="/"><strong>Fame</strong>Orbit</Link>
         <nav className={styles.nav} aria-label="Primary navigation">
-          <a href="#popular">Popular</a><a href="#categories">Categories</a><a href="#all-tools">All tools</a>
+          <a href="#popular">Popular</a><a href="#workflows">Workflows</a><a href="#categories">Categories</a><a href="#all-tools">All tools</a>
         </nav>
         <span className={styles.tag}>FREE · PRIVATE · FAST</span>
       </header>
@@ -60,7 +65,7 @@ export default function Home() {
           <div className={styles.search}>
             <span className={styles.searchIcon}>⌕</span>
             <input ref={inputRef} aria-label="Search tools" placeholder="Search a tool — try “compress”, “json”, “typing”..." value={query} onChange={e => setQuery(e.target.value)} />
-            <kbd>⌘ K</kbd>
+            <kbd>Ctrl K</kbd>
           </div>
           {query && <div className={styles.searchResults} role="listbox">
             {results.length ? results.map(t => <Link className={styles.searchResult} href={t.href} key={t.name} onClick={() => setQuery("")}>
@@ -78,6 +83,15 @@ export default function Home() {
         <div className={styles.popularGrid}>{popular.map((name, i) => <Link href={`/${slug(name)}/`} className={styles.popularCard} key={name}>
           <span className={styles.popularIcon}>{icons[i]}</span><div><small>0{i + 1}</small><h3>{name}</h3><p>{descriptions.get(name)}</p></div><b className={styles.arrow}>↗</b>
         </Link>)}</div>
+      </section>
+
+      <section className={`${styles.section} ${styles.workflowSection}`} id="workflows">
+        <div className={styles.sectionHead}><div><div className={styles.eyebrow}>DONE IN A FLOW</div><h2>Don't restart. Keep going.</h2></div><p>Useful tools become much better when the next step is obvious.</p></div>
+        <div className={styles.workflowGrid}>{workflows.map((flow, index) => <article className={styles.workflow} key={flow.title}>
+          <div className={styles.workflowTop}><span>{flow.label}</span><b>0{index + 1}</b></div>
+          <h3>{flow.title}</h3><p>{flow.description}</p>
+          <div className={styles.workflowSteps}>{flow.steps.map((step, stepIndex) => <Link href={`/${slug(step)}/`} key={step}><span>{stepIndex + 1}</span>{step}<b>→</b></Link>)}</div>
+        </article>)}</div>
       </section>
 
       <section className={styles.section} id="categories">
